@@ -3,15 +3,11 @@
 namespace Genkgo\Camt\Util;
 
 use SimpleXMLElement;
+use Money\Money;
+use Money\Currency;
 
 final class MoneyFactory
 {
-    private $decimalMoneyParser;
-
-    public function __construct()
-    {
-        $this->decimalMoneyParser = new DecimalMoneyParser(new ISOCurrencies());
-    }
 
     public function create(SimpleXMLElement $xmlAmount, $CdtDbtInd)
     {
@@ -21,12 +17,6 @@ final class MoneyFactory
             $amount = (string) ((float) $amount * -1);
         }
 
-        /** @psalm-var non-empty-string $currency */
-        $currency = (string) $xmlAmount['Ccy'];
-
-        return $this->decimalMoneyParser->parse(
-            $amount,
-            new Currency($currency)
-        );
+        return new Money($amount, new Currency($xmlAmount['Ccy']));
     }
 }
