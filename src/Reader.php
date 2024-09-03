@@ -16,6 +16,11 @@ class Reader
     private $config;
 
     /**
+     * @var MessageFormatInterface|null
+     */
+    private $messageFormat = null;
+
+    /**
      * @param Config $config
      */
     public function __construct(Config $config)
@@ -74,7 +79,12 @@ class Reader
             throw new ReaderException("{$file} does not exists");
         }
 
-        return $this->readString(file_get_contents($file));
+        $string = file_get_contents($file);
+        if ($string === false) {
+            throw new ReaderException("Could not read file {$file}");
+        }
+
+        return $this->readString($string);
     }
 
     /**
@@ -92,5 +102,10 @@ class Reader
         }
 
         throw new ReaderException("Unsupported format, cannot find message format with xmlns {$xmlNs}");
+    }
+
+    public function getMessageFormat()
+    {
+        return $this->messageFormat;
     }
 }

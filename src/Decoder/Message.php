@@ -10,14 +10,17 @@ use Genkgo\Camt\Decoder\Factory\DTO as DTOFactory;
 
 abstract class Message
 {
+    protected $recordDecoder;
+
+    protected $dateDecoder;
+
     /**
      * @var Record
      */
-    protected $recordDecoder;
-
-    public function __construct(Record $recordDecoder)
+    public function __construct(Record $recordDecoder, DateDecoderInterface $dateDecoder)
     {
         $this->recordDecoder = $recordDecoder;
+        $this->dateDecoder = $dateDecoder;
     }
 
     /**
@@ -28,8 +31,8 @@ abstract class Message
     {
         $xmlGroupHeader = $this->getRootElement($document)->GrpHdr;
         $groupHeader = new DTO\GroupHeader(
-            (string)$xmlGroupHeader->MsgId,
-            new DateTimeImmutable((string)$xmlGroupHeader->CreDtTm)
+            (string) $xmlGroupHeader->MsgId,
+            $this->dateDecoder->decode((string) $xmlGroupHeader->CreDtTm)
         );
 
         if (isset($xmlGroupHeader->AddtlInf)) {
@@ -42,6 +45,12 @@ abstract class Message
             );
         }
 
+        if (isset($xmlGroupHeader->MsgPgntn)) {
+            $groupHeader->setPagination(new DTO\Pagination(
+                (string) $xmlGroupHeader->MsgPgntn->PgNb,
+                ('true' === (string) $xmlGroupHeader->MsgPgntn->LastPgInd) ? true : false
+            ));
+        }
         $message->setGroupHeader($groupHeader);
     }
 
@@ -61,8 +70,8 @@ abstract class Message
             $record->setLegalSequenceNumber((string) $xmlRecord->LglSeqNb);
         }
         if (isset($xmlRecord->FrToDt)) {
-            $record->setFromDate(new DateTimeImmutable((string) $xmlRecord->FrToDt->FrDtTm));
-            $record->setToDate(new DateTimeImmutable((string) $xmlRecord->FrToDt->ToDtTm));
+            $record->setFromDate($this->dateDecoder->decode((string) $xmlRecord->FrToDt->FrDtTm));
+            $record->setToDate($this->dateDecoder->decode((string) $xmlRecord->FrToDt->ToDtTm));
         }
     }
 

@@ -21,4 +21,14 @@ class BankTransactionCode
     {
         $this->proprietary = $proprietary;
     }
+
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(DomainBankTransactionCode $domain)
+    {
+        $this->domain = $domain;
+    }
 }

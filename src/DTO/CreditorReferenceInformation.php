@@ -13,6 +13,9 @@ class CreditorReferenceInformation
      */
     private $ref;
 
+    private $proprietary = null;
+
+    private $code = null;
     /**
      * @return string
      */
@@ -39,5 +42,25 @@ class CreditorReferenceInformation
         $information = new static;
         $information->ref = $ref;
         return $information;
+    }
+
+    public function getProprietary()
+    {
+        return $this->proprietary;
+    }
+
+    public function setProprietary($proprietary)
+    {
+        $this->proprietary = $proprietary;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    public function setCode($code)
+    {
+        $this->code = $code;
     }
 }

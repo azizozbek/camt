@@ -46,9 +46,25 @@ class EntryTransactionDetail
     private $amountDetails;
 
     /**
+     * @var Charges $charges
+     */
+    private $charges = null;
+
+    /**
+     * @var Money $amount
+     */
+    private $amount = null;
+
+    private $creditDebitIndicator = null;
+
+    /**
+     * @var RelatedDates|null $relatedDates
+     */
+    private $relatedDates = null;
+    /**
      * @param Reference $reference
      */
-    public function addReference(Reference $reference)
+    public function setReference(Reference $reference)
     {
         $this->references[] = $reference;
     }
@@ -141,6 +157,20 @@ class EntryTransactionDetail
     }
 
     /**
+     * @param RelatedDates|null $relatedDates
+     * @return void
+     */
+    public function setRelatedDates($relatedDates)
+    {
+        $this->relatedDates = $relatedDates;
+    }
+
+    public function getRelatedDates()
+    {
+        return $this->relatedDates;
+    }
+
+    /**
      * @return RemittanceInformation
      */
     public function getRemittanceInformation()
@@ -202,6 +232,15 @@ class EntryTransactionDetail
         $this->bankTransactionCode = $bankTransactionCode;
     }
 
+    public function getCharges()
+    {
+        return $this->charges;
+    }
+
+    public function setCharges($charges)
+    {
+        $this->charges = $charges;
+    }
 
     /**
      * @return AmountDetails
@@ -211,13 +250,28 @@ class EntryTransactionDetail
         return $this->amountDetails;
     }
 
-    /**
-     * @param AmountDetails $amountDetails
-     */
-    public function setAmountDetails(AmountDetails $amountDetails)
+    public function setAmountDetails($amountDetails)
     {
         $this->amountDetails = $amountDetails;
     }
 
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    public function getCreditDebitIndicator()
+    {
+        return $this->creditDebitIndicator;
+    }
+
+    public function setCreditDebitIndicator( $creditDebitIndicator)
+    {
+        $this->creditDebitIndicator = $creditDebitIndicator;
+    }
 }

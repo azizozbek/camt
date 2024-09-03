@@ -4,7 +4,6 @@ namespace Genkgo\Camt\DTO;
 
 use BadMethodCallException;
 use DateTimeImmutable;
-use Money\Money;
 
 /**
  * Class Entry
@@ -72,21 +71,17 @@ class Entry
      */
     private $bankTransactionCode;
 
-    /**
-     * @param Record $record
-     * @param int $index
-     * @param Money $amount
-     * @param DateTimeImmutable $bookingDate
-     * @param DateTimeImmutable $valueDate
-     */
-    public function __construct(Record $record, $index, Money $amount, DateTimeImmutable $bookingDate, DateTimeImmutable $valueDate, $additionalInfo)
+    private $charges = null;
+
+    private $status = null;
+
+    private $creditDebitIndicator = null;
+
+    public function __construct(Record $record, $index, $amount)
     {
         $this->record = $record;
         $this->index = $index;
         $this->amount = $amount;
-        $this->bookingDate = $bookingDate;
-        $this->valueDate = $valueDate;
-        $this->additionalInfo = $additionalInfo;
     }
 
     /**
@@ -144,9 +139,9 @@ class Entry
     {
         if (isset($this->transactionDetails[0])) {
             return $this->transactionDetails[0];
-        } else {
-            throw new BadMethodCallException('There are no transaction details at all for this entry');
         }
+
+        return null;
     }
 
     /**
@@ -252,5 +247,45 @@ class Entry
     public function setBankTransactionCode(BankTransactionCode $bankTransactionCode)
     {
         $this->bankTransactionCode = $bankTransactionCode;
+    }
+
+    public function getCharges()
+    {
+        return $this->charges;
+    }
+
+    public function setCharges($charges)
+    {
+        $this->charges = $charges;
+    }
+
+    public function setBookingDate($date)
+    {
+        $this->bookingDate = $date;
+    }
+
+    public function setValueDate($date)
+    {
+        $this->valueDate = $date;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function getCreditDebitIndicator()
+    {
+        return $this->creditDebitIndicator;
+    }
+
+    public function setCreditDebitIndicator($creditDebitIndicator)
+    {
+        $this->creditDebitIndicator = $creditDebitIndicator;
     }
 }

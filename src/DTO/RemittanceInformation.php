@@ -22,6 +22,8 @@ class RemittanceInformation
      * @param $message
      * @return static
      */
+    private $unstructuredBlocks = [];
+
     public static function fromUnstructured($message)
     {
         $information = new static;
@@ -52,5 +54,57 @@ class RemittanceInformation
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * @deprecated Use addStructuredBlock method instead
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    public function addStructuredBlock(StructuredRemittanceInformation $structuredRemittanceInformation)
+    {
+        $this->structuredBlocks[] = $structuredRemittanceInformation;
+    }
+
+    /**
+     * @return StructuredRemittanceInformation[]
+     */
+    public function getStructuredBlocks()
+    {
+        return $this->structuredBlocks;
+    }
+
+    public function getStructuredBlock()
+    {
+        if (isset($this->structuredBlocks[0])) {
+            return $this->structuredBlocks[0];
+        }
+
+        return null;
+    }
+
+    public function addUnstructuredBlock(UnstructuredRemittanceInformation $unstructuredRemittanceInformation)
+    {
+        $this->unstructuredBlocks[] = $unstructuredRemittanceInformation;
+    }
+
+    /**
+     * @return UnstructuredRemittanceInformation[]
+     */
+    public function getUnstructuredBlocks()
+    {
+        return $this->unstructuredBlocks;
+    }
+
+    public function getUnstructuredBlock()
+    {
+        if (isset($this->unstructuredBlocks[0])) {
+            return $this->unstructuredBlocks[0];
+        }
+
+        return null;
     }
 }

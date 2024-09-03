@@ -17,10 +17,9 @@ class Config
      */
     private $messageFormats = [];
 
-    /**
-     * @param MessageFormatInterface $messageFormat
-     */
-    public function addMessageFormat(MessageFormatInterface $messageFormat)
+    private $xsdValidation = true;
+
+    public function addMessageFormat(MessageFormatInterface $messageFormat): void
     {
         $this->messageFormats[] = $messageFormat;
     }
@@ -31,6 +30,11 @@ class Config
     public function getMessageFormats()
     {
         return $this->messageFormats;
+    }
+
+    public function getXsdValidation()
+    {
+        return $this->xsdValidation;
     }
 
     /**
@@ -44,6 +48,7 @@ class Config
         $config->addMessageFormat(new Camt053\MessageFormat\V02());
         $config->addMessageFormat(new Camt053\MessageFormat\V03());
         $config->addMessageFormat(new Camt053\MessageFormat\V04());
+        $config->addMessageFormat(new Camt053\MessageFormat\V08());
         $config->addMessageFormat(new Camt054\MessageFormat\V02());
         $config->addMessageFormat(new Camt054\MessageFormat\V04());
 

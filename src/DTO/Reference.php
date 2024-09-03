@@ -16,7 +16,7 @@ class Reference
     /**
      * @var string|null
      */
-    private $accountServiceReference;
+    private $accountServicerReference = null;
 
     /**
      * @var string|null
@@ -85,7 +85,7 @@ class Reference
     {
         return $this->messageId;
     }
-    
+
     /**
      * @param string $messageId
      *
@@ -94,7 +94,7 @@ class Reference
     public function setMessageId($messageId)
     {
         $this->messageId = $messageId;
-    
+
         return $this;
     }
 
@@ -105,16 +105,16 @@ class Reference
     {
         return $this->accountServiceReference;
     }
-    
+
     /**
      * @param string $accountServiceReference
      *
      * @return Reference
      */
-    public function setAccountServiceReference($accountServiceReference)
+    public function setAccountServicerReference($accountServiceReference)
     {
         $this->accountServiceReference = $accountServiceReference;
-    
+
         return $this;
     }
 
@@ -125,7 +125,7 @@ class Reference
     {
         return $this->paymentInformationId;
     }
-    
+
     /**
      * @param string $paymentInformationId
      *
@@ -134,7 +134,7 @@ class Reference
     public function setPaymentInformationId($paymentInformationId)
     {
         $this->paymentInformationId = $paymentInformationId;
-    
+
         return $this;
     }
 
@@ -145,7 +145,7 @@ class Reference
     {
         return $this->instructionId;
     }
-    
+
     /**
      * @param string $instructionId
      *
@@ -154,7 +154,7 @@ class Reference
     public function setInstructionId($instructionId)
     {
         $this->instructionId = $instructionId;
-    
+
         return $this;
     }
 
@@ -165,7 +165,7 @@ class Reference
     {
         return $this->endToEndId;
     }
-    
+
     /**
      * @param string $endToEndId
      *
@@ -174,18 +174,28 @@ class Reference
     public function setEndToEndId($endToEndId)
     {
         $this->endToEndId = $endToEndId;
-    
+
         return $this;
     }
 
     /**
      * @return string|null
      */
+    public function getUuidEndToEndReference()
+    {
+        return $this->uuidEndToEndReference;
+    }
+
+    public function setUuidEndToEndReference($uuidEndToEndReference)
+    {
+        $this->uuidEndToEndReference = $uuidEndToEndReference;
+    }
+
     public function getTransactionId()
     {
         return $this->transactionId;
     }
-    
+
     /**
      * @param string $transactionId
      *
@@ -194,7 +204,7 @@ class Reference
     public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
-    
+
         return $this;
     }
 
@@ -205,7 +215,7 @@ class Reference
     {
         return $this->mandateId;
     }
-    
+
     /**
      * @param string $mandateId
      *
@@ -214,7 +224,7 @@ class Reference
     public function setMandateId($mandateId)
     {
         $this->mandateId = $mandateId;
-    
+
         return $this;
     }
 
@@ -225,7 +235,7 @@ class Reference
     {
         return $this->chequeNumber;
     }
-    
+
     /**
      * @param string $chequeNumber
      *
@@ -234,7 +244,7 @@ class Reference
     public function setChequeNumber($chequeNumber)
     {
         $this->chequeNumber = $chequeNumber;
-    
+
         return $this;
     }
 
@@ -245,7 +255,7 @@ class Reference
     {
         return $this->clearingSystemReference;
     }
-    
+
     /**
      * @param string $clearingSystemReference
      *
@@ -254,7 +264,7 @@ class Reference
     public function setClearingSystemReference($clearingSystemReference)
     {
         $this->clearingSystemReference = $clearingSystemReference;
-    
+
         return $this;
     }
 
@@ -265,7 +275,7 @@ class Reference
     {
         return $this->accountOwnerTransactionId;
     }
-    
+
     /**
      * @param string $accountOwnerTransactionId
      *
@@ -274,7 +284,7 @@ class Reference
     public function setAccountOwnerTransactionId($accountOwnerTransactionId)
     {
         $this->accountOwnerTransactionId = $accountOwnerTransactionId;
-    
+
         return $this;
     }
 
@@ -285,7 +295,7 @@ class Reference
     {
         return $this->accountServicerTransactionId;
     }
-    
+
     /**
      * @param string $accountServicerTransactionId
      *
@@ -294,7 +304,7 @@ class Reference
     public function setAccountServicerTransactionId($accountServicerTransactionId)
     {
         $this->accountServicerTransactionId = $accountServicerTransactionId;
-    
+
         return $this;
     }
 
@@ -305,7 +315,7 @@ class Reference
     {
         return $this->marketInfrastructureTransactionId;
     }
-    
+
     /**
      * @param string $marketInfrastructureTransactionId
      *
@@ -314,7 +324,7 @@ class Reference
     public function setMarketInfrastructureTransactionId($marketInfrastructureTransactionId)
     {
         $this->marketInfrastructureTransactionId = $marketInfrastructureTransactionId;
-    
+
         return $this;
     }
 
@@ -325,7 +335,7 @@ class Reference
     {
         return $this->processingId;
     }
-    
+
     /**
      * @param string $processingId
      *
@@ -334,7 +344,7 @@ class Reference
     public function setProcessingId($processingId)
     {
         $this->processingId = $processingId;
-    
+
         return $this;
     }
 

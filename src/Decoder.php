@@ -64,15 +64,18 @@ class Decoder implements DecoderInterface
         }
     }
 
-    /**
-     * @param DOMDocument $document
-     * @return Message
-     * @throws InvalidMessageException
-     */
-    public function decode(DOMDocument $document)
+    public function decode(DOMDocument $document, $xsdValidation = true)
     {
-        $this->validate($document);
-        $this->document = simplexml_import_dom($document);
+        if ($xsdValidation === true) {
+            $this->validate($document);
+        }
+
+        $document = simplexml_import_dom($document);
+        if (!$document) {
+            throw new InvalidMessageException('Provided XML could not be parsed');
+        }
+
+        $this->document = $document;
 
         $message = new DTO\Message();
         $this->messageDecoder->addGroupHeader($message, $this->document);

@@ -63,7 +63,7 @@ class GroupHeader
     {
         return $this->additionalInformation;
     }
-    
+
     /**
      * @param string $additionalInformation
      */
@@ -79,12 +79,22 @@ class GroupHeader
     {
         return $this->messageRecipient;
     }
-    
+
     /**
      * @param Recipient $messageRecipient
      */
     public function setMessageRecipient(Recipient $messageRecipient)
     {
         $this->messageRecipient = $messageRecipient;
+    }
+
+    public function getPagination()
+    {
+        return $this->pagination;
+    }
+
+    public function setPagination($pagination)
+    {
+        $this->pagination = $pagination;
     }
 }
