@@ -1,6 +1,7 @@
 # Genkgo.CAMT
 
 Library to read CAMT files. Currently only CAMT.052, CAMT.053 and CAMT.054 are supported.
+This version of Library is used for php 5.6, the functions will be manually added from newer versions. 
 
 ### Supported Versions
 
