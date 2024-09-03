@@ -5,6 +5,7 @@ namespace Genkgo\Camt\Camt052\Decoder;
 use Genkgo\Camt\Decoder\Message as BaseMessageDecoder;
 use Genkgo\Camt\DTO;
 use Genkgo\Camt\Camt052\DTO as Camt052DTO;
+use Genkgo\Camt\Exception\InvalidMessageException;
 use \SimpleXMLElement;
 use \DateTimeImmutable;
 use Genkgo\Camt\Iban;
@@ -23,7 +24,7 @@ abstract class Message extends BaseMessageDecoder
         foreach ($xmlReports as $xmlReport) {
             $report = new Camt052DTO\Report(
                 (string) $xmlReport->Id,
-                new DateTimeImmutable((string)$xmlReport->CreDtTm),
+                $this->dateDecoder->decode((string) $xmlReport->CreDtTm),
                 $this->getAccount($xmlReport)
             );
 
@@ -91,5 +92,7 @@ abstract class Message extends BaseMessageDecoder
 
             return $otherAccount;
         }
+
+        throw new InvalidMessageException('Cannot decode account');
     }
 }

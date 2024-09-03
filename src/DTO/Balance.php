@@ -55,48 +55,34 @@ class Balance
         $this->date = $date;
     }
 
-    /**
-     * @return DateTimeImmutable
-     */
     public function getDate()
     {
         return $this->date;
     }
 
-    /**
-     * @return Money
-     */
     public function getAmount()
     {
         return $this->amount;
     }
 
-    /**
-     * @return string
-     */
     public function getType()
     {
         return $this->type;
     }
 
-    /**
-     * @param Money $amount
-     * @param DateTimeImmutable $date
-     * @return static
-     */
     public static function opening(Money $amount, DateTimeImmutable $date)
     {
-        return new static (self::TYPE_OPENING, $amount, $date);
+        return new self(self::TYPE_OPENING, $amount, $date);
     }
 
-    /**
-     * @param Money $amount
-     * @param DateTimeImmutable $date
-     * @return static
-     */
+    public static function openingAvailable(Money $amount, DateTimeImmutable $date)
+    {
+        return new self(self::TYPE_OPENING_AVAILABLE, $amount, $date);
+    }
+
     public static function closing(Money $amount, DateTimeImmutable $date)
     {
-        return new static (self::TYPE_CLOSING, $amount, $date);
+        return new self(self::TYPE_CLOSING, $amount, $date);
     }
 
     public static function closingAvailable(Money $amount, DateTimeImmutable $date)

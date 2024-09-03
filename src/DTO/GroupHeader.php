@@ -31,6 +31,11 @@ class GroupHeader
     private $messageRecipient;
 
     /**
+     * @var Pagination|null $pagination
+     */
+    private $pagination = null;
+
+    /**
      * @param $messageId
      * @param DateTimeImmutable $createdOn
      */

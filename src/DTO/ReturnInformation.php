@@ -38,9 +38,10 @@ class ReturnInformation
      */
     public static function fromUnstructured($code, $additionalInformation)
     {
-        $information = new static;
+        $information = new self();
         $information->code = $code;
         $information->additionalInformation = $additionalInformation;
+
         return $information;
     }
 }

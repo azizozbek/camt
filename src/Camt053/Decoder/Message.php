@@ -23,7 +23,7 @@ class Message extends BaseMessageDecoder
         foreach ($xmlStatements as $xmlStatement) {
             $statement = new Camt053DTO\Statement(
                 (string) $xmlStatement->Id,
-                new DateTimeImmutable((string)$xmlStatement->CreDtTm),
+                $this->dateDecoder->decode((string) $xmlStatement->CreDtTm),
                 $this->getAccount($xmlStatement)
             );
 

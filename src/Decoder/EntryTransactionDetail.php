@@ -277,10 +277,10 @@ abstract class EntryTransactionDetail
      */
     public function addReturnInformation(DTO\EntryTransactionDetail $detail, SimpleXMLElement $xmlDetail)
     {
-        if (isset($xmlDetail->RtrInf) && isset($xmlDetail->RtrInf->Rsn->Cd)) {
+        if (isset($xmlDetail->RtrInf, $xmlDetail->RtrInf->Rsn->Cd)) {
             $remittanceInformation = DTO\ReturnInformation::fromUnstructured(
-                (string)$xmlDetail->RtrInf->Rsn->Cd,
-                (string)$xmlDetail->RtrInf->AddtlInf
+                (string) $xmlDetail->RtrInf->Rsn->Cd,
+                (string) $xmlDetail->RtrInf->AddtlInf
             );
             $detail->setReturnInformation($remittanceInformation);
         }
@@ -313,8 +313,8 @@ abstract class EntryTransactionDetail
 
             if (isset($xmlDetail->BkTxCd->Prtry)) {
                 $proprietaryBankTransactionCode = new DTO\ProprietaryBankTransactionCode(
-                    (string)$xmlDetail->BkTxCd->Prtry->Cd,
-                    (string)$xmlDetail->BkTxCd->Prtry->Issr
+                    (string) $xmlDetail->BkTxCd->Prtry->Cd,
+                    (string) $xmlDetail->BkTxCd->Prtry->Issr
                 );
 
                 $bankTransactionCode->setProprietary($proprietaryBankTransactionCode);

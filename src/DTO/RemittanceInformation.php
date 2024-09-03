@@ -9,12 +9,12 @@ namespace Genkgo\Camt\DTO;
 class RemittanceInformation
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $message;
 
     /**
-     * @var CreditorReferenceInformation
+     * @var CreditorReferenceInformation|null
      */
     private $creditorReferenceInformation;
 
@@ -26,8 +26,9 @@ class RemittanceInformation
 
     public static function fromUnstructured($message)
     {
-        $information = new static;
+        $information = new self();
         $information->message = $message;
+
         return $information;
     }
 

@@ -15,7 +15,8 @@ class RelatedParty
      */
     private $relatedPartyDetails;
     /**
-     * @var Account
+     * @var Account|null
+
      */
     private $account;
 
@@ -38,13 +39,10 @@ class RelatedParty
     }
 
     /**
-     * @return Account
+     * @return Account|null
      */
     public function getAccount()
     {
-        if ($this->account === null) {
-            throw new BadMethodCallException();
-        }
         return $this->account;
     }
 }

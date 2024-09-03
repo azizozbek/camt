@@ -51,6 +51,7 @@ abstract class Message
                 ('true' === (string) $xmlGroupHeader->MsgPgntn->LastPgInd) ? true : false
             ));
         }
+
         $message->setGroupHeader($groupHeader);
     }
 

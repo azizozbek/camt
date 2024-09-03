@@ -25,7 +25,7 @@ class Entry
     {
         $xmlDetails = $xmlEntry->NtryDtls->TxDtls;
 
-        if ($xmlDetails) {
+        if ($xmlDetails !== null) {
             foreach ($xmlDetails as $xmlDetail) {
                 $detail = new DTO\EntryTransactionDetail();
                 $this->entryTransactionDetailDecoder->addCreditDebitIdentifier($detail, $xmlEntry->CdtDbtInd);

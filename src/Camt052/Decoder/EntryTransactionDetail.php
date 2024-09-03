@@ -12,10 +12,14 @@ class EntryTransactionDetail extends BaseDecoder
     /**
      * {@inheritdoc}
      */
-    public function getRelatedPartyAccount(SimpleXMLElement $xmlRelatedPartyTypeAccount)
+    public function getRelatedPartyAccount($xmlRelatedPartyTypeAccount)
     {
+        if (!$xmlRelatedPartyTypeAccount) {
+            return null;
+        }
+
         if (false === isset($xmlRelatedPartyTypeAccount->Id)) {
-            return;
+            return null;
         }
 
         if (isset($xmlRelatedPartyTypeAccount->Id->IBAN)) {
@@ -54,5 +58,7 @@ class EntryTransactionDetail extends BaseDecoder
 
             return $otherAccount;
         }
+
+        return null;
     }
 }

@@ -3,12 +3,17 @@ namespace Genkgo\Camt\DTO;
 
 class BankTransactionCode
 {
-    /** @var ProprietaryBankTransactionCode */
-    private $proprietary;
 
     /**
-     * @return ProprietaryBankTransactionCode
+     * @var ProprietaryBankTransactionCode|null
      */
+    private $proprietary = null;
+
+    /**
+     * @var DomainBankTransactionCode|null
+     */
+    private $domain = null;
+
     public function getProprietary()
     {
         return $this->proprietary;
@@ -22,6 +27,9 @@ class BankTransactionCode
         $this->proprietary = $proprietary;
     }
 
+    /**
+     * @return DomainBankTransactionCode
+     */
     public function getDomain()
     {
         return $this->domain;

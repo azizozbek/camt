@@ -4,6 +4,7 @@ namespace Genkgo\Camt\DTO;
 
 use BadMethodCallException;
 use DateTimeImmutable;
+use Money\Money;
 
 /**
  * Class Entry

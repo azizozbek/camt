@@ -41,7 +41,7 @@ class EntryTransactionDetail
     private $bankTransactionCode;
 
     /**
-     * @var AmountDetails
+     * @var Money
      */
     private $amountDetails;
 
@@ -114,9 +114,9 @@ class EntryTransactionDetail
     {
         if (isset($this->relatedParties[0])) {
             return $this->relatedParties[0];
-        } else {
-            throw new BadMethodCallException('There are no related parties at all for this transaction');
         }
+
+        return null;
     }
 
     /**
@@ -143,9 +143,9 @@ class EntryTransactionDetail
     {
         if (isset($this->relatedAgents[0])) {
             return $this->relatedAgents[0];
-        } else {
-            throw new BadMethodCallException('There are no related agents at all for this transaction');
         }
+
+        return null;
     }
 
     /**
@@ -243,7 +243,7 @@ class EntryTransactionDetail
     }
 
     /**
-     * @return AmountDetails
+     * @return Money
      */
     public function getAmountDetails()
     {

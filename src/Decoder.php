@@ -3,7 +3,7 @@ namespace Genkgo\Camt;
 
 use DateTimeImmutable;
 use DOMDocument;
-use Genkgo\Camt\DecoderInterface;
+use Genkgo\Camt\DTO\Message;
 use Genkgo\Camt\Exception\InvalidMessageException;
 use Genkgo\Camt\Util\StringToUnits;
 use Money\Currency;
@@ -16,9 +16,6 @@ use SimpleXMLElement;
  */
 class Decoder implements DecoderInterface
 {
-    /**
-     * @var SimpleXMLElement[]
-     */
     private $document;
 
     /**
@@ -49,7 +46,7 @@ class Decoder implements DecoderInterface
     private function validate(DOMDocument $document)
     {
         libxml_use_internal_errors(true);
-        $valid = $document->schemaValidate(dirname(__DIR__).$this->schemeDefinitionPath);
+        $valid = $document->schemaValidate(dirname(__DIR__) . $this->schemeDefinitionPath);
         $errors = libxml_get_errors();
         libxml_clear_errors();
 
@@ -60,6 +57,7 @@ class Decoder implements DecoderInterface
             }
 
             $errorMessage = implode("\n", $messages);
+
             throw new InvalidMessageException("Provided XML is not valid according to the XSD:\n{$errorMessage}");
         }
     }
