@@ -17,6 +17,6 @@ final class MoneyFactory
             $amount = (string) ((float) $amount * -1);
         }
 
-        return new Money($amount, new Currency($xmlAmount['Ccy']));
+        return new Money((int)$amount, new Currency($xmlAmount['Ccy']->__toString()));
     }
 }
