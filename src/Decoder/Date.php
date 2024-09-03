@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Genkgo\Camt\Decoder;
 
 use DateTimeImmutable;
@@ -9,9 +7,9 @@ use InvalidArgumentException;
 
 class Date implements DateDecoderInterface
 {
-    private ?string $format = null;
+    private $format = null;
 
-    public function decode(string $date): DateTimeImmutable
+    public function decode($date)
     {
         if ($this->format === null) {
             $result = new DateTimeImmutable($date);
@@ -26,7 +24,7 @@ class Date implements DateDecoderInterface
         return $result;
     }
 
-    public static function fromFormat(string $format): self
+    public static function fromFormat($format)
     {
         $decoder = new self();
         $decoder->format = $format;
