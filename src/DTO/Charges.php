@@ -13,6 +13,9 @@ class Charges
      */
     private $records = [];
 
+    /**
+     * @return Money
+     */
     public function getTotalChargesAndTaxAmount()
     {
         return $this->totalChargesAndTaxAmount;
