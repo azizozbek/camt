@@ -16,6 +16,10 @@ class IbanAccount extends Account
     private $iban;
 
     /**
+     * @var Servicer
+     */
+    private $servicer;
+    /**
      * @param Iban $iban
      */
     public function __construct(Iban $iban)
@@ -29,6 +33,22 @@ class IbanAccount extends Account
     public function getIban()
     {
         return $this->iban;
+    }
+
+    /**
+     * @return Servicer
+     */
+    public function getServicer()
+    {
+        return $this->servicer;
+    }
+
+    /**
+     * @param Servicer $servicer
+     */
+    public function setServicer($servicer)
+    {
+        $this->servicer = $servicer;
     }
 
     /**
