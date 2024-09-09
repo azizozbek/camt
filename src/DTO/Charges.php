@@ -1,31 +1,32 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Genkgo\Camt\DTO;
 
 use Money\Money;
 
 class Charges
 {
-    private ?Money $totalChargesAndTaxAmount = null;
+    private $totalChargesAndTaxAmount = null;
 
     /**
      * @var ChargesRecord[]
      */
-    private array $records = [];
+    private $records = [];
 
-    public function getTotalChargesAndTaxAmount(): ?Money
+    /**
+     * @return Money
+     */
+    public function getTotalChargesAndTaxAmount()
     {
         return $this->totalChargesAndTaxAmount;
     }
 
-    public function setTotalChargesAndTaxAmount(Money $money): void
+    public function setTotalChargesAndTaxAmount(Money $money)
     {
         $this->totalChargesAndTaxAmount = $money;
     }
 
-    public function addRecord(ChargesRecord $record): void
+    public function addRecord(ChargesRecord $record)
     {
         $this->records[] = $record;
     }
@@ -33,12 +34,12 @@ class Charges
     /**
      * @return ChargesRecord[]
      */
-    public function getRecords(): array
+    public function getRecords()
     {
         return $this->records;
     }
 
-    public function getRecord(): ?ChargesRecord
+    public function getRecord()
     {
         if (isset($this->records[0])) {
             return $this->records[0];

@@ -250,6 +250,9 @@ class Entry
         $this->bankTransactionCode = $bankTransactionCode;
     }
 
+    /**
+     * @return Charges|null
+     */
     public function getCharges()
     {
         return $this->charges;
