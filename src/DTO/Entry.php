@@ -4,6 +4,7 @@ namespace Genkgo\Camt\DTO;
 
 use BadMethodCallException;
 use DateTimeImmutable;
+use Genkgo\Camt\Util\IntlMoneyFormatter;
 use Money\Money;
 
 /**
@@ -96,8 +97,12 @@ class Entry
     /**
      * @return Money
      */
-    public function getAmount()
+    public function getAmount($decimal = false)
     {
+        if ($decimal) {
+            return (new IntlMoneyFormatter())->format($this->amount);
+        }
+
         return $this->amount;
     }
 

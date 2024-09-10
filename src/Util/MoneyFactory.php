@@ -16,7 +16,7 @@ final class MoneyFactory
         if ((string) $CdtDbtInd === 'DBIT') {
             $amount = (string) ((float) $amount * -1);
         }
-
-        return new Money((int)$amount, new Currency($xmlAmount['Ccy']->__toString()));
+        
+        return new Money(Money::stringToUnits($amount), new Currency($xmlAmount['Ccy']->__toString()));
     }
 }

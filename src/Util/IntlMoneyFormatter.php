@@ -2,9 +2,7 @@
 
 namespace Genkgo\Camt\Util;
 
-use Money\Currencies;
 use Money\Money;
-use Money\MoneyFormatter;
 use NumberFormatter;
 
 /**
@@ -12,15 +10,10 @@ use NumberFormatter;
  */
 final class IntlMoneyFormatter implements MoneyFormatter
 {
-    private $currencies;
-    private $formatter;
-
-    public function __construct(NumberFormatter $formatter, Currencies $currencies)
-    {
-    }
 
     public function format(Money $money)
     {
+        $currencies = new ISOCurrencies();
         $valueBase = $money->getAmount();
         $negative  = $valueBase[0] === '-';
 
@@ -28,7 +21,7 @@ final class IntlMoneyFormatter implements MoneyFormatter
             $valueBase = substr($valueBase, 1);
         }
 
-        $subunit     = $this->currencies->subunitFor($money->getCurrency());
+        $subunit     = $currencies->subunitFor($money->getCurrency());
         $valueLength = strlen($valueBase);
 
         if ($valueLength > $subunit) {
@@ -45,8 +38,6 @@ final class IntlMoneyFormatter implements MoneyFormatter
         if ($negative) {
             $formatted = '-' . $formatted;
         }
-
-        $formatted = $this->formatter->formatCurrency((float) $formatted, $money->getCurrency()->getCode());
 
         assert($formatted !== '');
 
