@@ -2,6 +2,7 @@
 
 namespace Genkgo\Camt\Util;
 use ArrayIterator;
+use Money\Currencies;
 use Money\Currency;
 use Money\Exception\UnknownCurrencyException;
 use RuntimeException;
@@ -26,16 +27,16 @@ final class ISOCurrencies implements Currencies
 
     public function contains(Currency $currency)
     {
-        return isset($this->getCurrencies()[$currency->getName()]);
+        return isset($this->getCurrencies()[$currency->getCode()]);
     }
 
     public function subunitFor(Currency $currency)
     {
         if (! $this->contains($currency)) {
-            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getName());
+            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCode());
         }
 
-        return $this->getCurrencies()[$currency->getName()]['minorUnit'];
+        return $this->getCurrencies()[$currency->getCode()]['minorUnit'];
     }
 
     /**
@@ -46,10 +47,10 @@ final class ISOCurrencies implements Currencies
     public function numericCodeFor(Currency $currency)
     {
         if (! $this->contains($currency)) {
-            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getName());
+            throw new UnknownCurrencyException('Cannot find ISO currency ' . $currency->getCode());
         }
 
-        return $this->getCurrencies()[$currency->getName()]['numericCode'];
+        return $this->getCurrencies()[$currency->getCode()]['numericCode'];
     }
 
     /**
